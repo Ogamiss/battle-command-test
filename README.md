@@ -1,4 +1,4 @@
-# Battle Command V2
+# Battle Command V3
 
 Jeu web tactique multijoueur inspiré de la bataille navale.
 
@@ -30,3 +30,9 @@ Commandes à renseigner chez l'hébergeur :
 
 - Build command : `npm install`
 - Start command : `npm start`
+
+
+## Nouveautés V3
+- Mention “Créé par Les Grellet’s” sur l’écran d’accueil.
+- Écran de victoire avec le nom du joueur gagnant.
+- Résumé de partie avec tirs totaux, touches, ratés et unités coulées/détruites pour chaque joueur.

@@ -1,12 +1,11 @@
 {
   "name": "battle-command",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Jeu web multijoueur type bataille navale avec mer/terre, bateaux, tanks et militaires.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
-    "find-unused-assets": "node scripts/find-unused-assets.js"
+    "dev": "node server.js"
   },
   "dependencies": {
     "express": "^4.19.2",

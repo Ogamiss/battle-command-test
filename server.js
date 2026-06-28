@@ -39,6 +39,17 @@ function publicPlayer(p) {
   return { id: p.id, name: p.name, slot: p.slot, ready: p.ready };
 }
 
+function playerStats(p) {
+  return {
+    id: p.id,
+    name: p.name,
+    shots: p.shots.length,
+    hits: p.shots.filter(s => s.hit).length,
+    misses: p.shots.filter(s => !s.hit).length,
+    sunk: p.shots.filter(s => s.destroyed).length
+  };
+}
+
 function gameState(game) {
   return {
     code: game.code,
@@ -47,6 +58,7 @@ function gameState(game) {
     turn: game.turn,
     winner: game.winner,
     players: game.players.map(publicPlayer),
+    stats: game.players.map(playerStats),
     rules: { rows: ROWS, cols: COLS, seaCols: SEA_COLS, units: UNITS }
   };
 }
