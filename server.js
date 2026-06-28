@@ -59,7 +59,8 @@ function ownState(game, player) {
     myBoard: player.board,
     myUnits: player.units,
     myShots: player.shots,
-    enemyKnown: opponent ? opponent.board.map(row => row.map(cell => ({ r: cell.r, c: cell.c, terrain: cell.terrain, hit: cell.hit, knownUnit: cell.hit && cell.unitId ? true : false }))) : null
+    enemyKnown: opponent ? opponent.board.map(row => row.map(cell => ({ r: cell.r, c: cell.c, terrain: cell.terrain, hit: cell.hit, knownUnit: cell.hit && cell.unitId ? true : false }))) : null,
+    lastEvent: game.lastEvent ? { ...game.lastEvent, role: game.lastEvent.attacker === player.id ? 'attacker' : 'defender' } : null
   };
 }
 
@@ -105,6 +106,7 @@ function validatePlacement(board, placements) {
 function startCombat(game) {
   game.status = 'combat';
   game.turn = game.players[0].id;
+  game.lastEvent = null;
   game.timerEndsAt = null;
   emitGame(game);
 }
@@ -116,7 +118,7 @@ function maybeAutoStart(game) {
 io.on('connection', socket => {
   socket.on('createGame', ({ name } = {}) => {
     let c; do { c = code(); } while (games.has(c));
-    const game = { code: c, status: 'lobby', players: [newPlayer(socket, name, 1)], turn: null, winner: null, timerEndsAt: null, createdAt: Date.now() };
+    const game = { code: c, status: 'lobby', players: [newPlayer(socket, name, 1)], turn: null, winner: null, timerEndsAt: null, lastEvent: null, createdAt: Date.now() };
     games.set(c, game);
     socket.join(c);
     emitGame(game);
@@ -191,6 +193,7 @@ io.on('connection', socket => {
       if (unit && unit.cells.every(cell => defender.board[cell.r][cell.c].hit)) { unit.destroyed = true; destroyed = unit.name; }
     }
     attacker.shots.push({ r, c, hit, destroyed });
+    game.lastEvent = { id: `${Date.now()}-${attacker.id}-${r}-${c}`, attacker: attacker.id, defender: defender.id, r, c, hit, destroyed };
     if (defender.units.length && defender.units.every(u => u.destroyed)) {
       game.status = 'ended'; game.winner = attacker.id;
     } else {

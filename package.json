@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "find-unused-assets": "node scripts/find-unused-assets.js"
   },
   "dependencies": {
     "express": "^4.19.2",
