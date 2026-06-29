@@ -1,16 +1,20 @@
-# Battle Command V3
+# Battle Command V4 — Les Grellet’s
 
-Jeu web tactique multijoueur inspiré de la bataille navale.
+Version graphique améliorée.
 
-## Nouveautés V2
-- Interface graphique beaucoup plus proche de la maquette militaire.
-- Carte détaillée avec mer 6×5 et terre 4×5.
-- Affichage visuel des unités placées.
-- Animation plein écran à chaque tir : **TOUCHÉ**, **COULÉ**, **RATÉ**.
-- Effet d'impact sur la case bombardée.
-- Journal de bord amélioré.
+## Nouveautés V4
 
-## Installation locale
+- Page d’accueil plus cinématique avec fond illustré.
+- Mention : « Créé par Les Grellet’s ».
+- Carte détaillée 10×5 avec mer 6×5 et terre 4×5.
+- Même carte pour les deux joueurs.
+- Bateaux uniquement dans l’eau.
+- Tanks et militaires uniquement sur terre.
+- Sprites CSS pour porte-avion, bateaux militaires, tanks et soldats.
+- Animations de résultat : TOUCHÉ, COULÉ / DÉTRUIT, RATÉ.
+- Écran victoire avec nom du joueur gagnant et statistiques.
+
+## Installation
 
 ```bash
 npm install
@@ -19,20 +23,10 @@ npm start
 
 Puis ouvrir :
 
-```txt
+```text
 http://localhost:3000
 ```
 
-## Déploiement
-Ce projet est un serveur Node.js + Socket.IO. Il doit être hébergé sur un service compatible WebSockets comme Koyeb, Render, Fly.io ou un VPS.
+## Jouer à distance
 
-Commandes à renseigner chez l'hébergeur :
-
-- Build command : `npm install`
-- Start command : `npm start`
-
-
-## Nouveautés V3
-- Mention “Créé par Les Grellet’s” sur l’écran d’accueil.
-- Écran de victoire avec le nom du joueur gagnant.
-- Résumé de partie avec tirs totaux, touches, ratés et unités coulées/détruites pour chaque joueur.
+Il faut héberger le dossier sur un service compatible Node.js + WebSocket, par exemple Koyeb, Render, Railway ou un petit VPS.
